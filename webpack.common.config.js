@@ -25,6 +25,8 @@ module.exports = {
         Import: './cms/static/js/features/import/factories/import.js',
         CourseOrLibraryListing: './cms/static/js/features_jsx/studio/CourseOrLibraryListing.jsx',
         'js/pages/login': './cms/static/js/pages/login.js',
+        AccessibilityPage: './node_modules/@edx/studio-frontend/src/accessibilityIndex.jsx',
+        NoTextbooks: './cms/static/js/features_jsx/studio/NoTextbooks.jsx',
 
         // LMS
         SingleSupportForm: './lms/static/support/jsx/single_support_form.jsx',
