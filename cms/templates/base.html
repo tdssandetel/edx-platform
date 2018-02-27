@@ -126,6 +126,7 @@ from openedx.core.djangolib.markup import HTML
         require(['js/factories/base'], function () {
             require(['js/models/course'], function(Course) {
                 % if context_course:
+                    console.log('course');
                     window.course = new Course({
                         id: "${context_course.id | n, js_escaped_string}",
                         name: "${context_course.display_name_with_default | n, js_escaped_string}",
@@ -145,6 +146,7 @@ from openedx.core.djangolib.markup import HTML
         });
     </script>
     </%block>
+    <%block name="page_bundle_extra"></%block>
     <%include file="widgets/segment-io-footer.html" />
     <div class="modal-cover"></div>
   </body>

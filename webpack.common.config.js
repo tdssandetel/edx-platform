@@ -25,7 +25,7 @@ module.exports = {
         Import: './cms/static/js/features/import/factories/import.js',
         CourseOrLibraryListing: './cms/static/js/features_jsx/studio/CourseOrLibraryListing.jsx',
         'js/pages/login': './cms/static/js/pages/login.js',
-        AccessibilityPage: './node_modules/@edx/studio-frontend/src/accessibilityIndex.jsx',
+        'js/pages/textbooks': './cms/static/js/pages/textbooks.js',
         NoTextbooks: './cms/static/js/features_jsx/studio/NoTextbooks.jsx',
 
         // LMS
@@ -173,6 +173,8 @@ module.exports = {
             'edx-ui-toolkit': 'edx-ui-toolkit/src/',  // @TODO: some paths in toolkit are not valid relative paths
             'jquery.ui': 'jQuery-File-Upload/js/vendor/jquery.ui.widget.js',
             jquery: 'jquery/src/jquery',  // Use the non-dist form of jQuery for better debugging + optimization
+            // 'backbone': 'backbone',
+            'backbone.associations': 'backbone-associations-min',
 
             // See sinon/webpack interaction weirdness:
             // https://github.com/webpack/webpack/issues/304#issuecomment-272150177
