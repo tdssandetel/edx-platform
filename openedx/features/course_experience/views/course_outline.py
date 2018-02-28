@@ -37,10 +37,6 @@ class CourseOutlineFragmentView(EdxFragmentView):
         if not course_block_tree:
             return None
 
-        resume_block = get_resume_block(course_block_tree)
-        if not resume_block:
-            course_block_tree = self.mark_first_unit_to_resume(course_block_tree)
-
         # TODO: EDUCATOR-2283 Remove 'show_visual_progress' from context
         # and remove the check for it in the HTML file
         show_visual_progress = (
@@ -56,6 +52,10 @@ class CourseOutlineFragmentView(EdxFragmentView):
 
         # TODO: EDUCATOR-2283 Remove this check when the waffle flag is turned on in production
         if course_experience_waffle.new_course_outline_enabled(course_key=course_key):
+            resume_block = get_resume_block(course_block_tree)
+            if not resume_block:
+                self.mark_first_unit_to_resume(course_block_tree)
+
             xblock_display_names = self.create_xblock_id_and_name_dict(course_block_tree)
             gated_content = self.get_content_milestones(request, course_key)
 
@@ -155,16 +155,8 @@ class CourseOutlineFragmentView(EdxFragmentView):
         except CourseEnrollment.DoesNotExist:
             return False
 
-    def mark_first_unit_to_resume(self, course_block_tree):
-        def get_first_child(block):
-            return block.get('children')[0]
-
-        first_section = get_first_child(course_block_tree)
-        first_subsection = get_first_child(first_section)
-        first_unit = get_first_child(first_subsection)
-
-        first_section['resume_block'] = True
-        first_subsection['resume_block'] = True
-        first_unit['resume_block'] = True
-
-        return course_block_tree
+    def mark_first_unit_to_resume(self, block_node):
+        children = block_node.get('children')
+        if children:
+            children[0]['resume_block'] = True
+            self.mark_first_unit_to_resume(children[0])

@@ -163,6 +163,7 @@ def get_course_outline_block_tree(request, course_id):
             mark_last_accessed(request.user, course_key, course_outline_root_block)
     return course_outline_root_block
 
+
 def get_resume_block(block):
     """
     Gets the deepest block marked as 'resume_block'.
