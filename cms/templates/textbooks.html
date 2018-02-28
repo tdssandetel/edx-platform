@@ -29,7 +29,7 @@ CMS.URL.LMS_BASE = "${settings.LMS_BASE}"
 
 <%block name="page_bundle_extra">
   <%static:invoke_page_bundle page_name="js/pages/textbooks" class_name="TextbooksFactory">
-     "${textbooks | n, dump_js_escaped_json}"
+     ${textbooks | n, dump_js_escaped_json}
   </%static:invoke_page_bundle>
 </%block>
 
