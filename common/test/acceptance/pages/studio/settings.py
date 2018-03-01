@@ -261,15 +261,16 @@ class SettingsPage(CoursePage):
         """
         checkbox = self.entrance_exam_field
         selected = checkbox.is_selected()
+        self.scroll_to_element('#entrance-exam-enabled')
         if required and not selected:
             checkbox.click()
-            self.wait_for_element_visibility(
+            self.wait_for_element_presence(
                 '#entrance-exam-minimum-score-pct',
                 'Entrance exam minimum score percent is visible'
             )
         if not required and selected:
             checkbox.click()
-            self.wait_for_element_invisibility(
+            self.wait_for_element_absence(
                 '#entrance-exam-minimum-score-pct',
                 'Entrance exam minimum score percent is invisible'
             )
