@@ -7,7 +7,7 @@ from django.test import TestCase
 from django.test.utils import override_settings
 from mock import patch
 
-from completion import models, waffle
+from completion import models
 from completion.test_utils import CompletionWaffleTestMixin
 from openedx.core.djangoapps.user_api.accounts.utils import retrieve_last_sitewide_block_completed
 from openedx.core.djangolib.testing.utils import skip_unless_lms
@@ -113,7 +113,7 @@ class CompletionUtilsTestCase(SharedModuleStoreTestCase, CompletionWaffleTestMix
 
     @override_settings(LMS_BASE='test_url:9999')
     @patch('completion.waffle.get_current_site')
-    def test_retrieve_last_sitewide_block_completed_user(self, get_patched_current_site):
+    def test_retrieve_last_sitewide_block_completed_user(self, get_patched_current_site):  # pylint: disable=unused-argument
         """
         Test that the method returns a URL for the "last completed" block
         when sending a user object
@@ -133,7 +133,7 @@ class CompletionUtilsTestCase(SharedModuleStoreTestCase, CompletionWaffleTestMix
 
     @override_settings(LMS_BASE='test_url:9999')
     @patch('completion.waffle.get_current_site')
-    def test_retrieve_last_sitewide_block_completed_username(self, get_patched_current_site):
+    def test_retrieve_last_sitewide_block_completed_username(self, get_patched_current_site):  # pylint: disable=unused-argument
         """g
         Test that the method returns a URL for the "last completed" block
         when sending a username
