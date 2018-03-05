@@ -42,7 +42,6 @@ class EntitlementSupportView(View):
         }
     
         return render_to_response('support/entitlement.html', context)
->>>>>>> 3e6960aeb5... Adds EntitlementSupportView, Template, and base react element
 
 class EntitlementSupportListView(viewsets.ModelViewSet):
     """
