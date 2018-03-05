@@ -549,9 +549,6 @@ class TestCourseOutlineResumeCourse(SharedModuleStoreTestCase, CompletionWaffleT
                    "aria-labelledby=\"" + url + "\"" \
                    ">"
 
-        self.override_waffle_switch(True)
-        get_patched_current_site.return_value = self.site
-
         with patch('openedx.features.course_experience.waffle.new_course_outline_enabled', Mock(return_value=True)):
             # Course tree
             course = self.course
@@ -559,6 +556,7 @@ class TestCourseOutlineResumeCourse(SharedModuleStoreTestCase, CompletionWaffleT
             sequential1 = chapter.children[0]
             sequential2 = chapter.children[1]
 
+            import pdb; pdb.set_trace()
             response_content = self.client.get(course_home_url(course)).content
             stripped_response = text_type(re.sub("\\s+", "", response_content), "utf-8")
 
