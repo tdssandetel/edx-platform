@@ -101,7 +101,7 @@ class CompletionUtilsTestCase(SharedModuleStoreTestCase, CompletionWaffleTestMix
 
     def submit_faux_completions(self):
         """
-        Submit completions (only for user_one)
+        Submit completions (only for user_one)g
         """
         for block in self.course.children[0].children[0].children:
             models.BlockCompletion.objects.submit_completion(
@@ -126,7 +126,7 @@ class CompletionUtilsTestCase(SharedModuleStoreTestCase, CompletionWaffleTestMix
                 org=self.course.location.course_key.org,
                 course=self.course.location.course_key.course,
                 run=self.course.location.course_key.run,
-                vertical_id=self.vertical1.location.block_id,
+                vertical_id=self.vertical2.location.block_id,
             )
         )
         self.assertEqual(empty_block_url, None)
@@ -146,7 +146,7 @@ class CompletionUtilsTestCase(SharedModuleStoreTestCase, CompletionWaffleTestMix
                 org=self.course.location.course_key.org,
                 course=self.course.location.course_key.course,
                 run=self.course.location.course_key.run,
-                vertical_id=self.vertical1.location.block_id,
+                vertical_id=self.vertical2.location.block_id,
             )
         )
         self.assertEqual(empty_block_url, None)
