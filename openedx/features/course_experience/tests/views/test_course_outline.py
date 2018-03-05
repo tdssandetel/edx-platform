@@ -556,7 +556,6 @@ class TestCourseOutlineResumeCourse(SharedModuleStoreTestCase, CompletionWaffleT
             sequential1 = chapter.children[0]
             sequential2 = chapter.children[1]
 
-            import pdb; pdb.set_trace()
             response_content = self.client.get(course_home_url(course)).content
             stripped_response = text_type(re.sub("\\s+", "", response_content), "utf-8")
 
