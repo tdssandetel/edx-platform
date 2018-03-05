@@ -29,7 +29,7 @@ class SettingsPage(CoursePage):
     # Helpers
     ################
     def is_browser_on_page(self):
-        # wait_for_ajax_or_reload(self.browser)
+        wait_for_ajax_or_reload(self.browser)
         return self.q(css='body.view-settings').present
 
     def wait_for_require_js(self):
@@ -259,9 +259,9 @@ class SettingsPage(CoursePage):
         """
         Set the entrance exam requirement via the checkbox.
         """
+        self.scroll_to_element('#entrance-exam-enabled')
         checkbox = self.entrance_exam_field
         selected = checkbox.is_selected()
-        self.scroll_to_element('#entrance-exam-enabled')
         if required and not selected:
             checkbox.click()
             self.wait_for_element_presence(
