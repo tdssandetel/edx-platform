@@ -94,7 +94,7 @@ class SettingsPage(CoursePage):
         Returns boolean based on the presence
         of an element with css as passed.
         """
-        return self.q(css=css_selector).present
+        return self.q(css=css_selector).is_present
 
     def change_course_description(self, change_text):
         """
@@ -121,7 +121,7 @@ class SettingsPage(CoursePage):
         """
         Returns the enable entrance exam checkbox.
         """
-        self.wait_for_element_visibility(
+        self.wait_for_element_presence(
             '#entrance-exam-enabled',
             'Entrance exam checkbox is available'
         )
@@ -259,21 +259,14 @@ class SettingsPage(CoursePage):
         """
         Set the entrance exam requirement via the checkbox.
         """
-        self.scroll_to_element('#entrance-exam-enabled')
         checkbox = self.entrance_exam_field
         selected = checkbox.is_selected()
-        if required and not selected:
+        if required and not selected or not required and selected:
             checkbox.click()
-            self.wait_for_element_presence(
-                '#entrance-exam-minimum-score-pct',
-                'Entrance exam minimum score percent is visible'
-            )
-        if not required and selected:
-            checkbox.click()
-            self.wait_for_element_absence(
-                '#entrance-exam-minimum-score-pct',
-                'Entrance exam minimum score percent is invisible'
-            )
+            EmptyPromise(
+                lambda: checkbox.is_selected() == required,
+                'Checkbox is properly set'
+            ).fulfill()
 
     def save_changes(self, wait_for_confirmation=True):
         """

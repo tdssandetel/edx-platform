@@ -1035,7 +1035,6 @@ class EntranceExamTest(UniqueCourseTest):
         entrance_exam_link_selector = '.accordion .course-navigation .chapter .group-heading'
         # visit course page and make sure there is not entrance exam chapter.
         courseware_page.visit()
-        courseware_page.wait_for_page()
         self.assertFalse(element_has_text(
             page=courseware_page,
             css_selector=entrance_exam_link_selector,
@@ -1048,7 +1047,6 @@ class EntranceExamTest(UniqueCourseTest):
 
         # visit course settings page and set/enabled entrance exam for that course.
         self.settings_page.visit()
-        self.settings_page.wait_for_page()
         self.settings_page.require_entrance_exam()
         self.settings_page.save_changes()
 
