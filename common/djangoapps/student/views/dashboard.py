@@ -469,7 +469,7 @@ def student_dashboard(request):
         The dashboard response.
 
     """
-    log.info('RANDOM NUMBER:', random.random())
+    log.info('RANDOM NUMBER:', text_type(random.random()))
     user = request.user
     if not UserProfile.objects.filter(user=user).exists():
         return redirect(reverse('account_settings'))
