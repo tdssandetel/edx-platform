@@ -149,7 +149,7 @@ def retrieve_last_sitewide_block_completed(username):
 
         else:
             # This is a White Label site, and we should find candidates from the same site
-            if course.org != current_site_configuration:
+            if course.org not in current_site_configuration:
                 # Not the same White Label, or a edx.org course
                 continue
             if not latest_date or modified_date > latest_date:

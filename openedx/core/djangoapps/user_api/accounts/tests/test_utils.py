@@ -64,6 +64,7 @@ class UserAccountSettingsTest(TestCase):
         self.assertEqual(formatted_link_expected, format_social_link(platform_name, link_input))
 
 
+@ddt.ddt
 class CompletionUtilsTestCase(SharedModuleStoreTestCase, CompletionWaffleTestMixin, TestCase):
     """
     Test completion utility functions
@@ -113,33 +114,18 @@ class CompletionUtilsTestCase(SharedModuleStoreTestCase, CompletionWaffleTestMix
 
     @override_settings(LMS_BASE='test_url:9999')
     @patch('completion.waffle.get_current_site')
-    def test_retrieve_last_sitewide_block_completed_user(self, get_patched_current_site):  # pylint: disable=unused-argument
+    @ddt.data(True, False)
+    def test_retrieve_last_sitewide_block_completed(self, use_username, get_patched_current_site):  # pylint: disable=unused-argument
         """
         Test that the method returns a URL for the "last completed" block
         when sending a user object
         """
-        block_url = retrieve_last_sitewide_block_completed(self.engaged_user)
-        empty_block_url = retrieve_last_sitewide_block_completed(self.cruft_user)
-        self.assertEqual(
-            block_url,
-            u'//test_url:9999/courses/{org}/{course}/{run}/jump_to/i4x://{org}/{course}/vertical/{vertical_id}'.format(
-                org=self.course.location.course_key.org,
-                course=self.course.location.course_key.course,
-                run=self.course.location.course_key.run,
-                vertical_id=self.vertical2.location.block_id,
-            )
+        block_url = retrieve_last_sitewide_block_completed(
+            self.engaged_user.username if use_username else self.engaged_user
         )
-        self.assertEqual(empty_block_url, None)
-
-    @override_settings(LMS_BASE='test_url:9999')
-    @patch('completion.waffle.get_current_site')
-    def test_retrieve_last_sitewide_block_completed_username(self, get_patched_current_site):  # pylint: disable=unused-argument
-        """g
-        Test that the method returns a URL for the "last completed" block
-        when sending a username
-        """
-        block_url = retrieve_last_sitewide_block_completed(self.engaged_user.username)
-        empty_block_url = retrieve_last_sitewide_block_completed(self.cruft_user.username)
+        empty_block_url = retrieve_last_sitewide_block_completed(
+            self.cruft_user.username if use_username else self.cruft_user
+        )
         self.assertEqual(
             block_url,
             u'//test_url:9999/courses/{org}/{course}/{run}/jump_to/i4x://{org}/{course}/vertical/{vertical_id}'.format(
