@@ -21,7 +21,6 @@ module.exports = {
         CourseOrLibraryListing: './cms/static/js/features_jsx/studio/CourseOrLibraryListing.jsx',
         'js/pages/login': './cms/static/js/pages/login.js',
         'js/pages/textbooks': './cms/static/js/pages/textbooks.js',
-        'js/pages/asset_index': './cms/static/js/pages/asset_index.js',
         'js/sock': './cms/static/js/sock.js',
 
         // LMS
