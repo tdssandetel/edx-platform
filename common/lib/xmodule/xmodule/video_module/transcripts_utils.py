@@ -943,6 +943,8 @@ def get_transcript_from_contentstore(video, language, output_format, youtube_id=
         transcripts['en'] = sub
     elif video.youtube_id_1_0:
         transcripts['en'] = video.youtube_id_1_0
+    elif language == u'en':
+        raise NotFoundError('No transcript for `en` language')
 
     try:
         input_format, base_name, transcript_content = get_transcript_for_video(

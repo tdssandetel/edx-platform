@@ -908,12 +908,12 @@ class TestGetTranscript(SharedModuleStoreTestCase):
         exception_message = text_type(invalid_format_exception.exception)
         self.assertEqual(exception_message, 'Invalid transcript format `mpeg`')
 
-    def test_get_transcript_not_content(self):
+    def test_get_transcript_no_content(self):
         """
         Verify that `get_transcript` function returns correct exception when transcript content is empty.
         """
         self.upload_file(self.create_srt_file(''), self.video.location, 'ur_video_101.srt')
-        self.create_transcript('', 'ur',  'ur_video_101.srt')
+        self.create_transcript('', 'ur', 'ur_video_101.srt')
 
         with self.assertRaises(NotFoundError) as no_content_exception:
             transcripts_utils.get_transcript(
@@ -924,3 +924,19 @@ class TestGetTranscript(SharedModuleStoreTestCase):
 
         exception_message = text_type(no_content_exception.exception)
         self.assertEqual(exception_message, 'No transcript content')
+
+    def test_get_transcript_no_en_transcript(self):
+        """
+        Verify that `get_transcript` function returns correct exception when no transcript exists for `en`.
+        """
+        self.video.youtube_id_1_0 = ''
+        self.store.update_item(self.video, self.user.id)
+        with self.assertRaises(NotFoundError) as no_en_transcript_exception:
+            transcripts_utils.get_transcript(
+                self.course.id,
+                self.video.location.block_id,
+                'en'
+            )
+
+        exception_message = text_type(no_en_transcript_exception.exception)
+        self.assertEqual(exception_message, 'No transcript for `en` language')
