@@ -26,3 +26,6 @@ def doc_url(request=None):  # pylint: disable=unused-argument
             May be used in the future for determining the language of choice.
     """
     return common_doc_url(request, CONFIG)
+
+def acceso_unico_env(request):
+	return {'acceso_unico_env': "https://accesounico.dev.andaluciaesdigital.es"}

@@ -11,6 +11,8 @@ self.real_user = real_user if real_user != UNDEFINED else user
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 
+from context_processors import acceso_unico_env
+
 from openedx.core.djangoapps.user_api.accounts.image_helpers import get_profile_image_urls_for_user
 %>
 
@@ -34,7 +36,8 @@ from openedx.core.djangoapps.user_api.accounts.image_helpers import get_profile_
                 <%block name="navigation_dropdown_menu_links" >
                     <li class="dropdown-item item has-block-link"><a href="${reverse('dashboard')}" role="menuitem" class="action dropdown-menuitem">${_("Dashboard")}</a></li>
                     <li class="dropdown-item item has-block-link"><a href="${reverse('learner_profile', kwargs={'username': self.real_user.username})}" role="menuitem" class="action dropdown-menuitem">${_("Profile")}</a></li>
-                    <li class="dropdown-item item has-block-link"><a href="${reverse('account_settings')}" role="menuitem" class="action dropdown-menuitem">${_("Account")}</a></li>
+                    <!--li class="dropdown-item item has-block-link"><a href="${reverse('account_settings')}" role="menuitem" class="action dropdown-menuitem">${_("Account")}</a></li-->
+					<li class="dropdown-item item has-block-link"><a href="${acceso_unico_env('acceso_unico_env').get('acceso_unico_env')}/gestion/modifica_datos/?returnTo=http://formacion-liferay.des.junta-andalucia.es" role="menuitem" class="action dropdown-menuitem">Modificar datos</a></li>
                 </%block>
                 <li class="dropdown-item item has-block-link"><a href="${reverse('logout')}" role="menuitem" class="action dropdown-menuitem">${_("Sign Out")}</a></li>
             </ul>

@@ -10,6 +10,8 @@ from context_processors import doc_url
 from lms.djangoapps.ccx.overrides import get_current_ccx
 from openedx.core.djangolib.markup import HTML, Text
 
+from context_processors import acceso_unico_env
+
 # App that handles subdomain specific branding
 from branding import api as branding_api
 # app that handles site status messages
@@ -148,11 +150,11 @@ site_status_msg = get_site_status_msg(course_id)
             %endif
             % if course and settings.FEATURES.get('RESTRICT_ENROLL_BY_REG_METHOD') and course.enrollment_domain:
               <li class="item nav-global-04">
-                <a class="btn-neutral" href="${reverse('course-specific-register', args=[course.id.to_deprecated_string()])}">${_("Register")}</a>
+                <a class="btn-neutral" href="${acceso_unico_env('acceso_unico_env').get('acceso_unico_env')}/gestion/registro/PortalFormacion/">${_("Register")}</a>
               </li>
             % else:
               <li class="item nav-global-04">
-                <a class="btn-neutral" href="/register${login_query()}">${_("Register")}</a>
+                <a class="btn-neutral" href="${acceso_unico_env('acceso_unico_env').get('acceso_unico_env')}/gestion/registro/PortalFormacion/">${_("Register")}</a>
               </li>
             % endif
           % endif

@@ -515,6 +515,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',  # this is required for admin
                 'django.template.context_processors.csrf',
+				
 
                 # Added for django-wiki
                 'django.template.context_processors.media',
@@ -536,6 +537,7 @@ TEMPLATES = [
 
                 # Online contextual help
                 'context_processors.doc_url',
+				'context_processors.acceso_unico_env',
                 'openedx.core.djangoapps.site_configuration.context_processors.configuration_context'
             ],
             # Change 'debug' in your environment settings files - not here.
