@@ -125,7 +125,6 @@ class SettingsPage(CoursePage):
             '#entrance-exam-enabled',
             'Entrance exam checkbox is available'
         )
-        print self.get_element('#entrance-exam-enabled').isEnabled()
         return self.get_element('#entrance-exam-enabled')
 
     @property
