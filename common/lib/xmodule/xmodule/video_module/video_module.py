@@ -716,14 +716,15 @@ class VideoDescriptor(VideoFields, VideoTranscriptsMixin, VideoStudioViewHandler
                 ele.set('src', self.transcripts[transcript_language])
                 xml.append(ele)
 
-        if clean_video_id(self.edx_video_id):
+        edx_video_id = clean_video_id(self.edx_video_id)
+        if edx_video_id:
             try:
                 # Create static dir if not created earlier.
                 resource_fs.makedirs(EXPORT_STATIC_DIR, recreate=True)
 
                 xml.append(
                     edxval_api.export_to_xml(
-                        video_id=self.edx_video_id,
+                        video_id=edx_video_id,
                         resource_fs=resource_fs,
                         static_dir=EXPORT_STATIC_DIR,
                         course_id=unicode(self.runtime.course_id.for_branch(None))
