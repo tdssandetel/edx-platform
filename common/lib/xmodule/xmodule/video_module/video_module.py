@@ -236,7 +236,7 @@ class VideoModule(VideoFields, VideoTranscriptsMixin, VideoStudentViewHandlers, 
         # If we have an edx_video_id, we prefer its values over what we store
         # internally for download links (source, html5_sources) and the youtube
         # stream.
-        if self.edx_video_id:
+        if self.edx_video_id and edxval_api:
             try:
                 val_profiles = ["youtube", "desktop_webm", "desktop_mp4"]
 
