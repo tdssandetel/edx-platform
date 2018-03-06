@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 var path = require('path');
 
 module.exports = {
