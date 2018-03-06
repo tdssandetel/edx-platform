@@ -94,7 +94,7 @@ class SettingsPage(CoursePage):
         Returns boolean based on the presence
         of an element with css as passed.
         """
-        return self.q(css=css_selector).is_present
+        return self.q(css=css_selector).present
 
     def change_course_description(self, change_text):
         """
@@ -121,10 +121,11 @@ class SettingsPage(CoursePage):
         """
         Returns the enable entrance exam checkbox.
         """
-        self.wait_for_element_presence(
+        self.wait_for_element_visibility(
             '#entrance-exam-enabled',
             'Entrance exam checkbox is available'
         )
+        print self.get_element('#entrance-exam-enabled').isEnabled()
         return self.get_element('#entrance-exam-enabled')
 
     @property

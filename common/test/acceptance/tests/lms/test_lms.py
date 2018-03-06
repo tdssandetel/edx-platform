@@ -1010,7 +1010,6 @@ class EntranceExamTest(UniqueCourseTest):
 
         # visit course settings page and set/enabled entrance exam for that course.
         self.settings_page.visit()
-        self.settings_page.wait_for_page()
         self.settings_page.require_entrance_exam()
         self.settings_page.save_changes()
 
