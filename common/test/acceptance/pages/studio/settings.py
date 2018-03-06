@@ -121,7 +121,7 @@ class SettingsPage(CoursePage):
         """
         Returns the enable entrance exam checkbox.
         """
-        self.wait_for_element_visibility(
+        self.wait_for_element_presence(
             '#entrance-exam-enabled',
             'Entrance exam checkbox is available'
         )
