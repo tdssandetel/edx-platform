@@ -1,6 +1,6 @@
 define(
     ['js/models/course'],
     function(ContextCourse) {
-        window.course = new ContextCourse(window.pageFactoryArguments.ContextCourse[0]);
+        window.course = new ContextCourse(window.pageFactoryArguments.ContextCourse);
     }
 );
