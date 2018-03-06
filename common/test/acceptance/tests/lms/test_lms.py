@@ -1034,6 +1034,7 @@ class EntranceExamTest(UniqueCourseTest):
         entrance_exam_link_selector = '.accordion .course-navigation .chapter .group-heading'
         # visit course page and make sure there is not entrance exam chapter.
         courseware_page.visit()
+        courseware_page.wait_for_page()
         self.assertFalse(element_has_text(
             page=courseware_page,
             css_selector=entrance_exam_link_selector,

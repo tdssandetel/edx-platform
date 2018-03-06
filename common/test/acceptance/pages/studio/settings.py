@@ -30,7 +30,7 @@ class SettingsPage(CoursePage):
     ################
     def is_browser_on_page(self):
         wait_for_ajax_or_reload(self.browser)
-        return self.q(css='body.view-settings').present
+        return self.q(css='body.view-settings').is_present
 
     def wait_for_require_js(self):
         """
